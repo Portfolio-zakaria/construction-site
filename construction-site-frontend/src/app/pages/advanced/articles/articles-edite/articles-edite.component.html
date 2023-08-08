@@ -1,0 +1,68 @@
+<div class="card">
+  <div class="card-body">
+    <div class="alert alert-dark alert-dismissible" role="alert">
+      <div style="text-align: center;font-size: 16px;">Modifier Article</div>
+      </div>
+     
+      <form [formGroup]="ArticleForm" (ngSubmit)="editeArticle()"  class="pt-3 width-600 mx-auto ng-untouched ng-pristine ng-valid" >
+        <div class="form-group">
+          <label for="ref">Référence</label>
+          <input type="text" id="ref"
+                 class="form-control" formControlName="ref" [ngClass]="{ 'is-invalid': ArticleForm.get('ref').invalid && ArticleForm.get('ref').touched}" [(ngModel)]="this.articles.ref">
+                 <div class="invalid-feedback alert alert-danger">
+                     Reference is required.
+                   </div>
+        </div>
+        <div class="form-group">
+            <label for="ref">Intitulé</label>
+            <input type="text" id="nom"
+                   class="form-control" formControlName="nom" [ngClass]="{ 'is-invalid': ArticleForm.get('nom').invalid && ArticleForm.get('nom').touched}" [(ngModel)]="this.articles.nom">
+                   <div class="invalid-feedback alert alert-danger">
+                       Name is required.
+                     </div>
+          </div>
+          <div class="form-group">
+            <label for="designation">Désignation</label>
+           <textarea row="4" id="designation" class="form-control" formControlName="designation" [ngClass]="{ 'is-invalid': ArticleForm.get('designation').invalid && ArticleForm.get('designation').touched}" [(ngModel)]="this.articles.designation">
+
+           </textarea>
+
+          </div>
+        <div class="form-group">
+            <label for="prix_unitair">Prix Unitaire</label>
+            <input type="text" id="prix_unitair"
+                   class="form-control" formControlName="prix_unitair"[ngClass]="{ 'is-invalid': ArticleForm.get('prix_unitair').invalid && ArticleForm.get('prix_unitair').touched}" [(ngModel)]="this.articles.prix_unitair">
+                   <div class="invalid-feedback alert alert-danger">
+                       Prix is required.
+                     </div>
+          </div>
+          <div class="form-group">
+            <label for="taux_tva">Taux TVA</label>
+            <input type="text" id="taux_tva"
+                   class="form-control" formControlName="taux_tva"[ngClass]="{ 'is-invalid': ArticleForm.get('taux_tva').invalid && ArticleForm.get('taux_tva').touched}" [(ngModel)]="this.articles.taux_tva">
+                   <div class="invalid-feedback alert alert-danger">
+                    taux_tva is required.
+                     </div>
+          </div>        
+          <div class="form-group">
+            <label for="category">Select Category:</label>
+            <select class="form-control"  id="category" formControlName="category" [ngClass]="{ 'is-invalid': ArticleForm.get('category').invalid && ArticleForm.get('category').touched}" >
+                  <option *ngFor="let cat of categories._embedded.categories"  value="{{ cat.id_category }}" >{{ cat.intitule }}</option>
+                           
+              </select>
+               <div class="invalid-feedback alert alert-danger">
+                Category is required.
+              </div>
+     </div>
+     
+      
+             
+          
+      <button class="btn btn-outline-success" [disabled]="ArticleForm.invalid "
+            type="submit">Modifier
+      </button>
+      <button class="btn btn-outline-warning pull-right" style="margin-left: 5px;" (click)="onBack()">Retour</button>
+      </form>
+      
+    </div>
+  </div>

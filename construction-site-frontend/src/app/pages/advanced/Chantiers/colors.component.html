@@ -1,0 +1,247 @@
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">
+        <strong>Nouveau Chantier</strong>
+      </h5>
+      <form nz-form [formGroup]="ChantierForm" (ngSubmit)="addChantier(); "  >
+        <nz-form-item>
+          <div class=".col-md-8">
+          <nz-form-label nzFor="text">Sélectionnez un client existant, ou créez un nouveau client pour ce chantier</nz-form-label>
+          </div>
+          
+          <div class="mb-4">
+            <div class="d-inline-block mb-3 mr-3" *ngIf="listClients">
+              <nz-select style="width: 200px;" nzPlaceHolder="Choisir" id="id_Clt" formControlName="id_Clt"
+              [ngClass]="{ 'is-invalid': ChantierForm.get('id_Clt').invalid && ChantierForm.get('id_Clt').touched}">
+                <nz-option *ngFor="let c of listClients._embedded.clients"  nzValue="{{c.id_Clt}}" nzLabel="{{c.id_Clt}} : {{c.nom}} {{c.prenom}}"></nz-option>    
+                <div class="invalid-feedback">
+                  Veuillez choisir le client.
+                </div>      
+              </nz-select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-outline-primary mr-2 mb-2" (click)="AjouterClient()">Créer un nouveau client</button>
+          </div>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="intitule" class="text-left">Intitulé du chantier</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please input your full name!">
+            <input nz-input  placeholder="Intitulé du chantier..." id="intitule" formControlName="intitule"
+             [ngClass]="{ 'is-invalid': ChantierForm.get('intitule').invalid && ChantierForm.get('intitule').touched}" />
+             <div class="invalid-feedback">
+              Veuillez saisir un Intitulé.
+            </div> 
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="statut" class="text-left">statut</nz-form-label>
+
+              <nz-select style="width: 120px;" nzPlaceHolder="Choisir"  id="statut" formControlName="statut"
+              [ngClass]="{ 'is-invalid': ChantierForm.get('statut').invalid && ChantierForm.get('statut').touched}" >
+                <nz-option nzValue="A l'étude" nzLabel="A l'étude"></nz-option>
+                <nz-option nzValue="En cours" nzLabel="En cours"></nz-option>
+                <nz-option nzValue="Achevé" nzLabel="Achevé"></nz-option>
+                <nz-option nzValue="Litige/Contentieux" nzLabel="Litige/Contentieux"></nz-option>
+              </nz-select>
+         
+        </nz-form-item>
+        <nz-form-item>
+            <div class="row">
+           
+              <div class="col-md-6">
+                <nz-form-item>
+                  <nz-form-label nzFor="adresse" [nzSm]="4" [nzXs]="24" class="text-left">Adresse</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="1234 Main St." id="adresse" formControlName="adresse"
+                    [ngClass]="{ 'is-invalid': ChantierForm.get('adresse').invalid && ChantierForm.get('adresse').touched}"/>
+                    <div class="invalid-feedback">
+                      Veuillez saisir une adresse.
+                    </div> 
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="col-md-6">
+                <nz-form-item>
+                  <nz-form-label nzFor="address32">(Suite)</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="Apartement, studio, or floor" id="adresse1" formControlName="adresse1"
+                    [ngClass]="{ 'is-invalid': ChantierForm.get('adresse1').invalid && ChantierForm.get('adresse1').touched}"/>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="col-md-6">
+                <nz-form-item>
+                  <nz-form-label nzFor="city3" [nzSm]="4" [nzXs]="24" class="text-left">Ville</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="Ville" id="ville" formControlName="ville"
+                    [ngClass]="{ 'is-invalid': ChantierForm.get('ville').invalid && ChantierForm.get('ville').touched}"/>
+                    <div class="invalid-feedback">
+                      Veuillez saisir une ville.
+                    </div> 
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="col-md-2">
+                <nz-form-item>
+                  <nz-form-label nzFor="etat" style="margin-left : 15px" >Etat</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="Etat" id="etat" formControlName="etat"
+                    [ngClass]="{ 'is-invalid': ChantierForm.get('etat').invalid && ChantierForm.get('etat').touched}"/>
+                    <div class="invalid-feedback">
+                      Veuillez saisir l'etat.
+                    </div> 
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-label nzFor="cp" [nzSm]="4" [nzXs]="24" >CP</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="Code Postal"  id="cp" formControlName="cp"
+                    [ngClass]="{ 'is-invalid': ChantierForm.get('cp').invalid && ChantierForm.get('cp').touched}"/>
+                    <div class="invalid-feedback">
+                      Veuillez saisir le code postal.
+                    </div> 
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+        
+        </nz-form-item>
+        <div class="col-md-6">
+          <th></th>
+        </div>
+          
+       <nz-form-item>
+        <nz-form-control>
+          <button type="submit" class="btn btn-success px-5" style="float: inline-end;">
+            Enregistrer
+          </button>
+        </nz-form-control>
+       </nz-form-item>
+     </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+        <strong>Liste des chantiers</strong>
+      </div>
+
+
+      <div class="my-2 rounded"><div role="alert" class="toast fade show" style="max-width: 500px; margin-left:0px">
+        <div class="toast-header">
+        <strong class="mr-auto">Filtrez la liste</strong></div>
+         <div class="toast-body">
+     
+            <nz-radio-group [(ngModel)]="radioValue"  >
+              <label nz-radio-button nzValue="0" (click)="this.getData(0)" style="color: green;">Tout </label>
+              <label nz-radio-button nzValue="1" (click)="getData(1)" style="color: green;">A l'étude </label>
+              <label nz-radio-button nzValue="2" (click)="getData(2)" style="color: blue;">En cours</label>
+              <label nz-radio-button nzValue="3" (click)="getData(3)" style="color: black;">Achevé </label>
+              <label nz-radio-button nzValue="4" (click)="getData(4)" style="color: red">Litige/contentieux</label>
+            </nz-radio-group>
+
+         </div>
+        </div>
+      </div>
+
+      
+
+      <nz-table #smallTable nzSize="small" [nzData]="listChantiers" *ngIf="this.listChantiers">
+        <thead>
+        <tr class="sortable ">
+          <th class="table-id" st-sort="id" st-sort-default="true">Identifiant</th>
+          <th st-sort="lastName">Intitulé</th>    
+          <th st-sort="age">statut</th>
+          <th st-sort="email">Adresse</th>
+          <th st-sort="email">Ville</th>
+          <th st-sort="username">Client</th>
+          <th st-sort="age">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ch of smallTable.data">
+          <td class="table-id">{{ ch[0] }}</td>
+          <td>{{ch[1]}}</td>
+          <td>{{ch[2]}}</td>
+          <td>{{ch[3]}}</td>
+          <td>{{ch[4]}}</td>
+          <td>
+            <!--Client à ajouter -->
+            
+            <button type="button" (click)="onShowClient(ch[0])" class="btn btn-sm btn-outline-info mr-2 mb-2">
+              <i class="fa fa-external-link-square" ></i> </button>
+
+          </td>
+          <td>
+            <button class="btn btn-sm btn-outline-danger mr-2 mb-2" nz-popconfirm    nzPopconfirmTitle="Etes-vous certain de vouloir le supprimer définitivement ?" nzPopconfirmPlacement="bottom"
+            (nzOnConfirm)="onDelete(ch[0])" (nzOnCancel)="cancel()" nzPopconfirmPlacement="top" ><i class="icmn-bin"></i>Supprimer</button>
+
+            <button type="button" (click)="onEdite(ch[0])" class="btn btn-sm btn-outline-warning mr-2 mb-2">
+            <i class="fe fe-edit"></i>Edite</button>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+
+      <div class="card" *ngIf="this.showClientInfoChantier">
+        <div class="card-body">
+              
+             
+            
+            <div class="textDivider mb-2">
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <h5 class="textDividerContent font-size-24 font-weight-bold">
+                    Client
+                </h5>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <button type="button" (click)="onShowClientVisible()" class="btn btn-sm btn-outline-danger mr-2 mb-2 pull-right">
+                    <i class="fa fa-remove" ></i> </button>
+                </div>
+              </div>
+               
+                
+            </div>
+              <nz-table
+                #basicTable2
+                [nzShowPagination]="false"
+                [nzData]="this.clientByChantier"
+                class="table mb-4"
+              >
+                <thead>
+                <tr>
+        
+                  <th class="text-uppercase">Nom</th>
+                  <th class="text-uppercase">Email</th>
+                  <th class="text-uppercase">Téléphone</th>
+                  <th class="text-uppercase">Adresse</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of basicTable2.data">
+               
+                    <td>
+                        <div>{{data.nom}} {{data.prenom}}</div>  
+                    </td>
+                    <td>
+                    <div>{{data.email}}</div>  
+                    </td>
+                    <td>
+                        <div>{{data.tel}}</div>  
+                    </td>
+                    <td>
+                        <div>{{data.adresse}}</div>  
+                    </td>
+                </tr>
+                </tbody>
+              </nz-table>
+    </div>
+  </div>
+

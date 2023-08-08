@@ -1,0 +1,210 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="mb-4">
+      <strong>Nouveau Employé</strong>
+    </h5>
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="employeForm" (ngSubmit)="onSaveEmploye()">
+      <div class="row">
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="email3">Nom</nz-form-label>
+            <nz-form-control>
+              <input type="text" id="nom"
+                 class="form-control" formControlName="nom" [ngClass]="{ 'is-invalid': employeForm.get('nom').invalid && employeForm.get('nom').touched}">
+                 <div class="invalid-feedback">
+                  Veuillez Compléter le champs
+                   </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="password3">Prénom</nz-form-label>
+            <nz-form-control>
+              <input type="text" id="prenom"
+              class="form-control" formControlName="prenom"[ngClass]="{ 'is-invalid': employeForm.get('prenom').invalid && employeForm.get('prenom').touched}">
+              <div class="invalid-feedback">
+                Veuillez Compléter le champs
+                </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="address31">Email</nz-form-label>
+            <nz-form-control>
+              <input type="Email" id="title" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': employeForm.get('email').invalid && employeForm.get('email').touched}">
+              <div class="invalid-feedback" *ngIf="employeForm.get('email').errors?.required">
+                Veuillez Compléter le champs
+              </div>
+              <div class="invalid-feedback" *ngIf="employeForm.get('email').errors?.email" >
+                Veuillez saisir un email valide.
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="address32">Téléphone</nz-form-label>
+            <nz-form-control>
+              <input type="Telephone" id="tel"
+              class="form-control" formControlName="tel" [ngClass]="{ 'is-invalid': employeForm.get('tel').invalid && employeForm.get('tel').touched}">
+              <div class="invalid-feedback" *ngIf="employeForm.get('tel').errors?.required">
+                Veuillez Compléter le champs
+               </div>
+               <div class="invalid-feedback" *ngIf="employeForm.get('tel').errors?.minlength">
+                Le numéro téléphone doit contenir au moins 10 caractères.
+               </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="email3">Adresse</nz-form-label>
+            <nz-form-control>
+              <input type="text" id="dateengagement"
+              class="form-control" formControlName="adress" [ngClass]="{ 'is-invalid': employeForm.get('adress').invalid && employeForm.get('adress').touched}">
+              <div class="invalid-feedback">
+                Veuillez Compléter le champs
+                </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="password3">Date d'engagment</nz-form-label>
+            <nz-form-control>
+              <input type="date" id="dateengagement"
+                 class="form-control" formControlName="dateengagement"[ngClass]="{ 'is-invalid': employeForm.get('dateengagement').invalid && employeForm.get('dateengagement').touched}">
+                 <div class="invalid-feedback">
+                  Veuillez Compléter le champs
+                   </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="address31">Profile</nz-form-label>
+            <nz-form-control>
+              <input type="text" id="profil"
+              class="form-control" formControlName="profil"[ngClass]="{ 'is-invalid': employeForm.get('profil').invalid && employeForm.get('profil').touched}">
+              <div class="invalid-feedback">
+                Veuillez Compléter le champs
+                </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="address32">Cout/Heure</nz-form-label>
+            <nz-form-control>
+              <input type="number" id="salaire"
+              class="form-control" formControlName="salaire"[ngClass]="{ 'is-invalid': employeForm.get('salaire').invalid && employeForm.get('salaire').touched}">
+              <div class="invalid-feedback">
+                  Veuillez Compléter le champs
+                </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        
+      
+         
+          <nz-form-item>
+
+            <button style="width: 150px; margin-left: 15px; " type="button" class="btn btn-success mr-2 mb-2" type="submit">
+             Enregistrer
+            </button>
+     
+          </nz-form-item>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  <div class="card">
+    <div class="card-body">
+
+  <nz-table *ngIf="employes" #smallTable nzSize="small" [nzData]="employes._embedded.employes">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Nom</th>
+      <th>prénom</th>
+      <th>Email</th>
+      <th>Date d'engagment</th>
+      <th>Téléphone</th>
+      <th>Adresse</th>
+      <th>Profile</th>
+      <th>Cout/Heure</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let element of smallTable.data">
+      <td>
+        {{element.id}} 
+      </td>
+      <td>
+         
+            {{element.nom}} 
+    
+      </td>
+      <td >
+        
+                {{element.prenom}} 
+   
+      </td>
+      <td>
+         
+                {{element.email}}
+  
+      </td>
+      <td>
+       
+              {{element.dateengagement}}
+       
+    </td>
+    <td>
+     
+            {{element.tel}}
+      
+  </td>
+  <td>
+   
+          {{element.adress}}
+
+ </td> 
+  <td>
+  
+          {{element.profil}}
+
+    </td>
+    <td>
+  
+      {{element.salaire}}
+
+  </td>
+      <td>
+        <div class="buttons">
+          <button class="btn btn-outline-warning mr-2 mb-2" (click)="onEdite(element.id)">Edite</button>
+
+          <button class="btn btn-outline-danger mr-2 mb-2" nz-popconfirm    nzPopconfirmTitle="Etes-vous certain de vouloir le supprimer définitivement ?" nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="onDelete(element.id)" (nzOnCancel)="cancel()" nzPopconfirmPlacement="top" ><i class="icmn-bin"></i>Supprimer</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </nz-table>
+  </div></div>
+  
+  
+ 

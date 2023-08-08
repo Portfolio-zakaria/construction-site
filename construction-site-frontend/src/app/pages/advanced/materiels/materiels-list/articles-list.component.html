@@ -1,0 +1,98 @@
+     
+  
+<div  class="card">
+  <div  class="card-body">
+    <h5 class="mb-4" > <strong> Articles</strong> </h5>
+    <h6 class="mb-1" style="color:#273b54 ; font-size: 14px;"> Sélectionnez ou créez les articles à commander : 
+  <div style="float: right;">
+    <button class="btn btn-sm btn-outline-info mr-2 mb-2" (click)="onNewArticle()" >Ajouter un article</button>
+  </div>
+ </h6>
+
+  <nz-table #smallTable nzSize="small" *ngIf="this.article" [nzData]="this.article._embedded.materiels">
+    <thead>
+      <tr>
+        <th>Quantité </th>
+        <th>No.</th>
+        <th>Référence</th>
+        <th>Intitulé</th>
+        <th>Désignation.</th>
+        <th>Prix Unitaire</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of smallTable.data">
+      <td>
+        <form [formGroup]="qteForm">
+          
+            <input type="number" name="qte" class="ant-input ng-tns-c145-3774" 
+                   formControlName="qte" style="width: 60px; height: 37px; " >
+            <button class="btn btn-outline-dark mr-2 mb-2"   style="margin-left: 2px; margin-top: 4px;"
+                   (click)="addToTab(qteForm.value.qte,data.id_mat,data.ref,data.nom,data.prix_unitair)"
+                    [disabled]="qteForm.invalid"> <i class="fa fa-cart-plus"></i>
+            </button>
+      
+        </form>
+      </td>
+        <td>{{ data.id_mat }}</td>
+        <td>{{ data.ref }}</td>
+        <td>{{ data.nom }}</td>
+        <td>{{ data.designation }}</td>
+        <td>{{ data.prix_unitair }}</td>
+       
+      </tr>
+    </tbody>
+  </nz-table>
+
+</div>
+</div>
+      
+
+
+
+
+
+
+  <div class="container-fluid mt-5 " *ngIf="show">
+    <div class="alert alert-dark alert-dismissible" style="background: #337ab7; " role="alert">
+      <div style="font-size: 16px; text-align:center;"> <strong>Nouvelle commande fornisseur </strong> </div> 
+    </div>
+      
+<div  class="card">
+  <div  class="card-body">
+   
+  <table class="table table-striped" >
+
+    <tr>
+        <th>Réf</th>
+        <th>Intitulé</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th colspan="2">Actions</th>
+      
+    </tr>
+        
+        <tr *ngFor="let a of this.tabs.values()">
+           
+            <td>{{ a.ref }}</td>
+            <td>{{ a.nom }}</td>
+            <td>{{ a.prix_unitair }}</td>
+            <td>{{ a.qte}}</td>
+          
+          
+            <td> 
+              <button class="btn btn-outline-light mr-2 mb-2" (click)="deleteItem(a.id_mat)"><i aria-hidden="true" class="icmn-bin"></i>Supprimer </button>
+            </td>
+           
+        </tr>
+       
+   </table>
+
+   <button style="float: right;" class="btn btn-squared btn-success mr-2 mb-2"  (click)="addArticleToCommande()"> Passer la Commande </button>
+    <button style="float: right;" class="btn btn-squared btn-light mr-2 mb-2"(click)="onAnule()" >Annuler </button>
+
+  
+  </div>
+  </div>
+  </div>

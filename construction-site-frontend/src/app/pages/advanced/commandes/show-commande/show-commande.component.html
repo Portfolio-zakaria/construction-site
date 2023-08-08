@@ -1,0 +1,191 @@
+<div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+    <strong>Informations de commande</strong>
+  </div>
+<div class="row">
+    <div class="col-md-6">
+    <div class="card">
+        <div class="card-body">
+             
+
+            
+  <div class="textDivider mb-2">
+    <h5 class="textDividerContent font-size-24 font-weight-bold">
+      Chantier
+    </h5>
+  </div>
+  <nz-table
+    #basicTable
+    [nzShowPagination]="false"
+    [nzData]="this.chantier"
+    class="table mb-4"
+  >
+    <thead>
+    <tr>
+
+      <th class="text-uppercase">Intitulé</th>
+      <th class="text-uppercase">Statut</th>
+      <th class="text-uppercase">Adresse</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+  
+      
+        <td>
+        <div>{{data.intitule}}</div>  
+        </td>
+        <td>
+            <div>{{data.statut}}</div>  
+        </td>
+        <td>
+            <div>{{data.adresse}}</div>  
+        </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+           
+
+    
+        </div>
+
+    </div>
+   </div>
+
+    <div class="col-md-6">
+
+    <div class="card">
+        <div class="card-body">
+              
+             
+            
+            <div class="textDivider mb-2">
+                <h5 class="textDividerContent font-size-24 font-weight-bold">
+                    Fournisseur
+                </h5>
+            </div>
+              <nz-table
+                #basicTable2
+                [nzShowPagination]="false"
+                [nzData]="this.fournisseur"
+                class="table mb-4"
+              >
+                <thead>
+                <tr>
+        
+                  <th class="text-uppercase">Nom</th>
+                  <th class="text-uppercase">Email</th>
+                  <th class="text-uppercase">Téléphone</th>
+                  <th class="text-uppercase">Adresse</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of basicTable2.data">
+               
+                    <td>
+                        <div>{{data.nom}} {{data.prenom}}</div>  
+                    </td>
+                    <td>
+                    <div>{{data.email}}</div>  
+                    </td>
+                    <td>
+                        <div>{{data.tel}}</div>  
+                    </td>
+                    <td>
+                        <div>{{data.adress}}</div>  
+                    </td>
+                </tr>
+                </tbody>
+              </nz-table>
+
+
+
+
+        
+            </div>
+        </div>
+
+    </div>   
+
+</div>
+
+
+
+<div class="card">
+    <div class="card-body">
+         
+
+
+    <table class="table table-striped" style="border:2px grey;">
+        <thead class="thead-inverse">
+            <tr>
+            <th>ID</th>
+            <th>Ref</th>
+            <th>Nom</th>
+            <th>Catégorie</th>
+            <th>Prix</th>
+            <th>Qte</th>
+            </tr>
+        </thead>
+            <tbody>
+              
+                <tr *ngFor="let a of this.listArticle">
+                    <td >{{a[0]}}</td>
+                    <td>{{a[1]}}</td>
+                    <td>{{a[2]}}</td>
+                    <td>{{a[5]}}</td>
+                   <td>{{a[3]}}</td>
+                   <td>{{a[4]}}</td>
+               </tr>    
+          
+
+            </tbody>
+    </table> 
+         
+    <div style="float: inline-end;">
+        <fieldset style="color: red;">
+       
+            <tr>
+                <div class="form-group row">
+                <td><label >Total net H.T</label></td> 
+                <div class="col-md-6">
+                <td><input class="form-control" style="width: 150px;" disabled value="{{this.total}}"/></td> 
+            </div>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group row">
+                <td><label >TVA</label></td> 
+                <div class="col-md-6">
+                <td><input class="form-control" style="width: 150px; margin-left: 55px; " disabled value="20%"/></td> 
+            </div>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group row">
+                <td><label >Total T.T.C</label></td> 
+                <div class="col-md-6">
+                <td><input class="form-control" style="width: 150px; margin-left: 18px;"  disabled value="{{this.totlaTva}}" /></td> 
+               </div>
+            </div>
+
+            </tr>
+            
+        </fieldset>
+        <div style="float: inline-end; margin-top: 20px;">
+            <button class="btn btn-success mr-2 mb-2" style="background-color : black ; border-color:black;" (click)="Annule()">Retour</button>
+
+            <button class="btn btn-success mr-2 mb-2" style="background-color:#286090 ; border-color:#286090 ;"  mat-flat-button color="primary" (click)="downloadpdf()">Exporter la facture</button>
+            <button class="btn btn-danger mr-2 mb-2"  mat-flat-button color="primary" (click)="sendEmail()"><i  style="margin-right: 8px;" class="fa fa-paper-plane-o"></i>Envoyer au fournisseur</button>
+        </div>
+    </div>
+
+
+  
+
+
+
+</div>
+</div>

@@ -1,0 +1,222 @@
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">
+        <strong>Nouveau client</strong>
+      </h5>
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="ClientForm" (ngSubmit)="addClient(); " >
+        <div class="row">
+          <div class="col-md-4">
+            <nz-form-item>
+              <nz-form-label nzFor="text">Ce tiers est un(e)</nz-form-label>
+              <div class="mb-5">
+                <div class="d-inline-block mb-3 mr-3">
+                  <nz-select style="width: 120px;" nzPlaceHolder="Choisir" formControlName="typeTier"
+                  [ngClass]="{ 'is-invalid': ClientForm.get('typeTier').invalid && ClientForm.get('typeTier').touched}">
+                    <nz-option nzValue="Client" nzLabel="Client"></nz-option>
+                    <nz-option nzValue="Prospect" nzLabel="Prospect"></nz-option>
+                  </nz-select>
+                  <div class="invalid-feedback">
+                    Veuillez choisir le type de tier.
+                  </div>
+                </div>
+              </div>
+            </nz-form-item>
+          </div>
+            <div class="col-md-4">
+            <nz-form-item>
+              <nz-form-label nzFor="text">Type</nz-form-label>
+              <nz-form-control>
+                  <input type="radio" id="Professionnel" name="type" value="Professionnel" formControlName="type"
+                  [ngClass]="{ 'is-invalid': ClientForm.get('type').invalid && ClientForm.get('type').touched}" />
+                  <label for="Professionnel">Professionnel</label><br>
+                  <input type="radio" id="Particulier" name="type" value="Particulier" formControlName="type"
+                  [ngClass]="{ 'is-invalid': ClientForm.get('type').invalid && ClientForm.get('type').touched}" />
+                  <label for="Particulier">Particulier</label><br>
+                  <div class="invalid-feedback">
+                    Veuillez choisir le type de client.
+                  </div>
+                </nz-form-control>
+              
+            </nz-form-item>
+            </div>
+            <div class="col-md-4">
+              <nz-form-item>
+                <nz-form-label nzFor="statuCivilite">Statut/Civilité</nz-form-label>
+                <nz-form-control>
+                  <input nz-input placeholder="Statut ou Civilité"  id="statuCivilite"  formControlName="statuCivilite"
+                  [ngClass]="{ 'is-invalid': ClientForm.get('statuCivilite').invalid && ClientForm.get('statuCivilite').touched}" />
+                  <div class="invalid-feedback">
+                    Veuillez saisir une statut ou civilité.
+                  </div>
+                </nz-form-control>
+                
+              </nz-form-item>
+            </div>
+    
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="nom">Nom</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="nom" id="nom"  formControlName="nom"
+                [ngClass]="{ 'is-invalid': ClientForm.get('nom').invalid && ClientForm.get('nom').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un nom.
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="prenom">Prénom</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Prénom" id="prenom" formControlName="prenom"
+                [ngClass]="{ 'is-invalid': ClientForm.get('prenom').invalid && ClientForm.get('prenom').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un prénom.
+                </div>  
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+    
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="address31">Adresse</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="1234 Main St." id="adresse" formControlName="adresse"
+                [ngClass]="{ 'is-invalid': ClientForm.get('adresse').invalid && ClientForm.get('adresse').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir une adresse.
+                </div>  
+              </nz-form-control>
+              
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="address32">(suite)</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Appartements, studio ou étage" id="suiteAdress" formControlName="suiteAdress"
+                [ngClass]="{ 'is-invalid': ClientForm.get('suiteAdress').invalid && ClientForm.get('suiteAdress').touched}" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="city3">Ville</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Ville" id="ville" formControlName="ville"
+                [ngClass]="{ 'is-invalid': ClientForm.get('ville').invalid && ClientForm.get('ville').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir une ville.
+                </div>  
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-2">
+            <nz-form-item>
+              <nz-form-label nzFor="state3">Etat</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Etat" id="etat" formControlName="etat"
+                [ngClass]="{ 'is-invalid': ClientForm.get('etat').invalid && ClientForm.get('etat').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir une etat.
+                </div> 
+              </nz-form-control>
+               
+            </nz-form-item>
+          </div>
+          <div class="col-md-4">
+            <nz-form-item>
+              <nz-form-label nzFor="zip3">CP</nz-form-label>
+              <nz-form-control>
+                <input nz-input  placeholder="Code Postal" id="cp" formControlName="cp"
+                [ngClass]="{ 'is-invalid': ClientForm.get('cp').invalid && ClientForm.get('cp').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un Code Postal.
+                </div> 
+              </nz-form-control>
+               
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="email3">Email</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Email" id="email" formControlName="email"
+                [ngClass]="{ 'is-invalid': ClientForm.get('email').invalid && ClientForm.get('email').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un email valide.
+                </div> 
+              </nz-form-control>
+             
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label  nzFor="tel">Téléphone</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Téléphone" id="tel" formControlName="tel"
+                [ngClass]="{ 'is-invalid': ClientForm.get('tel').invalid && ClientForm.get('tel').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un n° de téléphone.
+                </div> 
+              </nz-form-control>
+              
+            </nz-form-item>
+          </div>
+    
+         
+        </div>
+
+           
+          <button style="width: 180px; float: inline-end;" type="button" class="btn btn-success"  type="submit">
+            Enregistrer
+          </button>
+  
+
+      </form>
+    </div>
+    
+    <div class="card-body">
+      <h5 class="mb-4">
+        <strong>Clients</strong>
+      </h5>
+      <nz-table *ngIf="listClients" #smallTable nzSize="small" [nzData]="listClients._embedded.clients">
+        <thead>
+        <tr class="sortable ">
+          <th class="table-id" st-sort="id" st-sort-default="true">Identifiant</th>
+          <th st-sort="lastName">Nom</th>
+          <th st-sort="username">Prénom</th>
+          <th st-sort="age">Type</th>
+          <th st-sort="age">Statut/Activité</th>
+          <th st-sort="email">Ville</th>
+          <th st-sort="age">Téléphone</th>
+          <th st-sort="age">Email</th>
+          <th st-sort="age">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of smallTable.data">
+          <td class="table-id">{{c.id_Clt}}</td>
+          <td>{{c.nom}}</td>
+          <td>{{c.prenom}}</td>
+          <td>{{c.type}}</td>
+          <td>{{c.statuCivilite}}</td>
+          <td>{{c.ville}}</td>
+          <td>{{c.tel}}</td>
+          <td>{{c.email}}</td>
+          <td>
+             <button class="btn btn-sm btn-outline-danger mr-2 mb-2" nz-popconfirm    nzPopconfirmTitle="Etes-vous certain de vouloir le supprimer définitivement ?" nzPopconfirmPlacement="bottom"
+               (nzOnConfirm)="onDelete(c.id_Clt)" (nzOnCancel)="cancel()" nzPopconfirmPlacement="top" ><i class="icmn-bin"></i>Supprimer</button>
+
+             <button type="button" (click)="onEdite(c.id_Clt)" class="btn btn-sm btn-outline-warning mr-2 mb-2">
+              <i class="fe fe-edit"></i>Edite</button>
+          </td>
+        </tr>
+        </tbody>
+
+      </nz-table>
+    </div>
+  </div>
+</div>

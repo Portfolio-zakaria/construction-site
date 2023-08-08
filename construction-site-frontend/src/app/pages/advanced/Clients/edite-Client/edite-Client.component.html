@@ -1,0 +1,179 @@
+<div>
+  <div class="card">
+    <div class="card-body">
+      <div class="alert alert-dark alert-dismissible" role="alert">
+        <div style="text-align: center;font-size: 16px;">Modifier Client</div>
+        </div>
+        
+        
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="ClientForm1" (ngSubmit)="onUpdateClient()" >
+        <div class="row">
+          <div class="col-md-4">
+            <nz-form-item>
+              <nz-form-label nzFor="text">Ce tiers est un(e)</nz-form-label>
+              <div class="mb-5">
+                <div class="d-inline-block mb-3 mr-3">
+                  <nz-select style="width: 120px;" nzPlaceHolder="Choisir" formControlName="typeTier" [(ngModel)]="this.client.typeTier"
+                  [ngClass]="{ 'is-invalid': ClientForm1.get('typeTier').invalid && ClientForm1.get('typeTier').touched}">
+                    <nz-option nzValue="Client" nzLabel="Client"></nz-option>
+                    <nz-option nzValue="Prospect" nzLabel="Prospect"></nz-option>
+                  </nz-select>
+                  <div class="invalid-feedback">
+                    Veuillez choisir le type de tier.
+                  </div>
+                </div>
+              </div>
+            </nz-form-item>
+          </div>
+            <div class="col-md-4">
+            <nz-form-item>
+              <nz-form-label nzFor="text">Type</nz-form-label>
+              <nz-form-control>
+                  <input type="radio" id="Professionnel" name="type" value="Professionnel" formControlName="type"
+                  [(ngModel)]="this.client.type"
+                  [ngClass]="{ 'is-invalid': ClientForm1.get('type').invalid && ClientForm1.get('type').touched}" />
+                  <label for="Professionnel">Professionnel</label><br>
+                  <input type="radio" id="Particulier" name="type" value="Particulier" formControlName="type"
+                  [(ngModel)]="this.client.type"
+                  [ngClass]="{ 'is-invalid': ClientForm1.get('type').invalid && ClientForm1.get('type').touched}" />
+                  <label for="Particulier">Particulier</label><br>
+                  <div class="invalid-feedback">
+                    Veuillez choisir le type de client.
+                  </div>
+              </nz-form-control>
+            </nz-form-item>
+            </div>
+            <div class="col-md-4">
+              <nz-form-item>
+                <nz-form-label nzFor="statuCivilite">Statut/Civilité</nz-form-label>
+                <nz-form-control>
+                  <input nz-input placeholder="Statut ou Civilité"  id="statuCivilite" 
+                  [(ngModel)]="this.client.statuCivilite" formControlName="statuCivilite"
+                  [ngClass]="{ 'is-invalid': ClientForm1.get('statuCivilite').invalid && ClientForm1.get('statuCivilite').touched}" />
+                  <div class="invalid-feedback">
+                    Veuillez saisir une statut ou civilité.
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+    
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="nom">Nom</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="" id="nom"  formControlName="nom"  [(ngModel)]="this.client.nom"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('nom').invalid && ClientForm1.get('nom').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un nom.
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="prenom">Prénom</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="" id="prenom" formControlName="prenom"  [(ngModel)]="this.client.prenom"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('prenom').invalid && ClientForm1.get('prenom').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un prénom.
+                </div> 
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+    
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="address31">Adresse</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="1234 Main St." id="adresse" formControlName="adresse" [(ngModel)]="this.client.adresse"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('adresse').invalid && ClientForm1.get('adresse').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir une adresse.
+                </div>  
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="address32">(suite)</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Apartement, studio, or floor" id="suiteAdress" formControlName="suiteAdress" [(ngModel)]="this.client.suiteAdress"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('suiteAdress').invalid && ClientForm1.get('suiteAdress').touched}" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="city3">Ville</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Ville" id="ville" formControlName="ville" [(ngModel)]="this.client.ville"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('ville').invalid && ClientForm1.get('ville').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir une ville.
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-2">
+            <nz-form-item>
+              <nz-form-label nzFor="state3">Etat</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Etat"  id="etat" formControlName="etat" [(ngModel)]="this.client.etat"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('etat').invalid && ClientForm1.get('etat').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir une etat.
+                </div> 
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-4">
+            <nz-form-item>
+              <nz-form-label nzFor="zip3">CP</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Code Postal" id="cp" formControlName="cp" [(ngModel)]="this.client.cp"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('cp').invalid && ClientForm1.get('cp').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un Code Postal.
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="email3">Email</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Email" id="email" formControlName="email" [(ngModel)]="this.client.email"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('email').invalid && ClientForm1.get('email').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un email valide.
+                </div> 
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="tel">Téléphone</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Téléphone" id="tel" formControlName="tel" [(ngModel)]="this.client.tel"
+                [ngClass]="{ 'is-invalid': ClientForm1.get('tel').invalid && ClientForm1.get('tel').touched}" />
+                <div class="invalid-feedback">
+                  Veuillez saisir un n° de téléphone.
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+    
+          <div class="col-12">
+            <nz-form-item>
+              <button type="button" class="btn btn-outline-warning mr-2 mb-2" type="submit">
+                Modifier
+              </button>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    
+   
+  </div>
+</div>

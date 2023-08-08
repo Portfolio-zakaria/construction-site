@@ -1,0 +1,47 @@
+<div class="" >
+  <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+    <strong>Liste des fournisseurs</strong>
+  </div>
+   
+   
+<div class="card">
+  <div class="card-body">
+<button class="btn btn-outline-primary mr-2 mb-2" (click)="onNewFournisseur()" >Ajouter fournisseur</button>
+<br>
+<div >
+<nz-table #smallTable nzSize="small" *ngIf="fournisseurs" [nzData]="this.fournisseurs._embedded.fournisseurs">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Email</th>
+      <th>adresse</th>
+      <th>Téléphone</th>
+      <th>Actions</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let element of smallTable.data">
+      <td>{{element.id_fournisseur}}</td>
+      <td>{{element.nom}} </td>
+      <td>{{element.prenom}}</td>
+      <td>{{element.email}}</td>
+      <td>{{element.adress}}</td>
+      <td>{{element.tel}}</td>
+      <td>
+        <div aria-label="" role="group" class="btn-group mr-2 mb-2">
+          <button type="button" class="btn btn-outline-warning" (click)="onEdite(element.id_fournisseur)"><i aria-hidden="true" class="fe fe-edit mr-1"></i>Edite</button>
+          <button type="button" class="btn btn-outline-danger" (click)="onDelete(element.id_fournisseur)"><i aria-hidden="true" class="icmn-bin"></i>Supprimer </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,321 @@
+<!--<div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+    <strong>Les Nombre de Chantier par Anne </strong>
+  </div>
+<div class="card">
+    <div class="card-body">
+    <div class="row my-4">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <app-charts2 [data]="nombreBydate" my-id="chart4" type="bar"></app-charts2>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            
+
+        </div></div></div></div>
+
+        <div class="card">
+            <div class="card-body">
+            <div class="row my-4">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <app-charts2 [data]="ChantierVHT" vhtChantier="chart5" type="pie"></app-charts2>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+        
+                </div></div></div></div>
+
+
+                <label for="chantier ">Select chantier:</label>
+                <select class="form-control"  id="chantier" name="chantier" #selectElem (change)="getNombreEmployeTachChantier(selectElem.value)" (change)="getData(selectElem.value)" (change)="getEmployeVH(selectElem.value)" >
+                    <option>Select -----------------</option>
+                    <option *ngFor="let c of this.chantiers" value="{{c.id_Chantier}}" >{{ c.intitule }}</option>
+                            
+                </select>
+                <div class="card">
+                    <div class="card-body">
+                    <div class="row my-4">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <app-charts [data]="ArticlesObject" my-id="chart1" type="bar"></app-charts>
+                                </div>
+                                <div class="col-md-6">
+                                    <app-charts [data]="ArticlesObject" my-id="chart2" type="line"></app-charts>
+                                </div>
+                            
+                            </div>
+                            </div>
+                
+                        </div></div></div>
+                        <div class="card">
+                            <div class="card-body">
+                            <div class="row my-4">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12" >
+                                            <app-charts [data]="ChantierNombreTache" emp="chart3" type="polarArea"></app-charts>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <app-charts [data]="employeVHT" vhEmp="chart6" type="doughnut"></app-charts>
+                                        </div>
+                                    </div>
+                                </div></div></div>
+                            -->
+                            <div class="cui__utils__heading mb-3">
+                                <strong class="text-uppercase font-size-16">AFFAIRES</strong>
+                              </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                  <div class="card">
+                                    <kit-chart-11></kit-chart-11>
+                                  </div>
+                                </div>
+                                <div class="col-xl-4">
+                                  <div class="card">
+                                    <kit-chart-11v1></kit-chart-11v1>
+                                  </div>
+                                </div>
+                                <div class="col-xl-4">
+                                  <div class="card">
+                                    <kit-chart-11v2></kit-chart-11v2>
+                                  </div>
+                                </div>
+                              </div>
+                             <div class="cui__utils__heading">
+                                <strong>STATISTIQUE Générales </strong>
+                              </div>
+                              <div class="row">
+                                <div class="col-xl-3 col-lg-6">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <kit-chart-4></kit-chart-4>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-6">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <kit-chart-4v1></kit-chart-4v1>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-6">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <kit-chart-4v2></kit-chart-4v2>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-6">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <kit-chart-4v3></kit-chart-4v3>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+          <div class="col-md-6 col-sm-12" >
+            <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+                <strong> Nombre de Chantier par années </strong>
+              </div>
+        <div class="card">
+             <div class="card-body">
+                <app-charts2 [data]="nombreBydate" my-id="chart4" type="bar"></app-charts2>
+          </div>   
+          </div> 
+          </div>
+          <div class="col-md-6 col-sm-12" >
+            <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+                <strong>VHT  Chantier </strong>
+              </div>
+        <div class="card">
+             <div class="card-body">
+                <app-charts2 [data]="ChantierVHT" vhtChantier="chart5" type="pie"></app-charts2>
+          </div>   
+          </div> 
+        </div>    
+    </div>
+    <!--*****************************************************************************************-->
+
+
+    <div class="card">
+        <div class="card-body" >
+        <div class="row my-4">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+
+                        <label for="chantier ">Sélectionner chantier:</label>
+                        <select class="form-control"  id="chantier" name="chantier" #selectElem (change)="getNombreEmployeTachChantier(selectElem.value)" (change)="getData(selectElem.value)" (change)="getEmployeVH(selectElem.value)" >
+                            <option>Select -----------------</option>
+                            <option *ngFor="let c of this.chantiers" value="{{c.id_Chantier}}" >{{ c.intitule }}</option>
+                                    
+                        </select>
+                        </div>
+                        <div class="col-md-2"></div>
+                </div>
+            </div>
+         </div>
+         </div> 
+         </div>
+         <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+            <strong>Quantité Utiliser Dans une Chantier Sélectionner</strong>
+          </div>
+    <div class="row mb-2">
+        <div class="col-md-3 col-sm-12" >
+            
+              
+            </div>   
+        <div class="col-md-6 col-sm-12" >
+         
+      <div class="card" style="height: 325px;">
+           <div class="card-body">
+            <app-charts [data]="ArticlesObject" my-id="chart1" type="bar"></app-charts>
+        </div>   
+        </div> 
+        </div>
+        <div class="col-md-3 col-sm-12" >
+     
+      </div>    
+  </div>
+
+  
+  <div class="row">
+    <div class="col-md-6 col-sm-12" >
+      <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+          <strong>Nombre des employés trvaillés sur une tache </strong>
+        </div>
+     <div class="card">
+       <div class="card-body">
+        <app-charts [data]="ChantierNombreTache" emp="chart3" type="polarArea"></app-charts>
+    </div>   
+    </div> 
+    </div>
+    <div class="col-md-6 col-sm-12" >
+      <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+          <strong>VHT D'un Employeé Dans une Chantier Sélectionner </strong>
+        </div>
+    <div class="card">
+       <div class="card-body">
+        <app-charts [data]="employeVHT" vhEmp="chart6" type="doughnut"></app-charts>
+    </div>   
+    </div> 
+  </div>    
+</div>
+
+<!--
+<div class="card">
+<div class="card-body">
+<div class="row my-4">
+    <div class="col-12">
+       
+          
+    
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <app-charts2 [data]="nombreBydate" my-id="chart4" type="bar"></app-charts2>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <app-charts2 [data]="ChantierVHT" vhtChantier="chart5" type="pie"></app-charts2>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    
+        <label for="chantier ">Select chantier:</label>
+        <select class="form-control"  id="chantier" name="chantier" #selectElem (change)="getNombreEmployeTachChantier(selectElem.value)" (change)="getData(selectElem.value)" (change)="getEmployeVH(selectElem.value)" >
+            <option>Select -----------------</option>
+            <option *ngFor="let c of this.chantiers" value="{{c.id_Chantier}}" >{{ c.intitule }}</option>
+                    
+        </select>
+        
+        </div>
+    
+    <div class="col-3 text-right"> </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <app-charts [data]="ArticlesObject" my-id="chart1" type="bar"></app-charts>
+        </div>
+        <div class="col-md-6">
+            <app-charts [data]="ArticlesObject" my-id="chart2" type="line"></app-charts>
+        </div>
+    
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6 col-sm-12" >
+            <app-charts [data]="ChantierNombreTache" emp="chart3" type="polarArea"></app-charts>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <app-charts [data]="employeVHT" vhEmp="chart6" type="doughnut"></app-charts>
+        </div>
+    </div>
+
+    </div>
+    </div>-->

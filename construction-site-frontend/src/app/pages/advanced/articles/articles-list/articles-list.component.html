@@ -1,0 +1,76 @@
+    
+     
+    <div class="card">
+      <div class="card-body">
+  <button class="btn btn-outline-primary mr-2 mb-2" (click)="onNewArticle()" >Ajouter article</button>
+  <nz-table #smallTable nzSize="small" *ngIf="article" [nzData]="this.article">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Référence</th>
+          <th>Intitulé</th>
+          <th>Désignation</th>
+          <th>Prix Unitaire </th>
+          <th>Taux TVA</th>
+          <th>Prix TTc</th>
+          <th>Ctaegory</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of smallTable.data">
+          <td>{{ data[0] }}</td>
+          <td>{{ data[1] }}</td>
+          <td>{{ data[2] }}</td>
+          <td>{{ data[3] }}</td>
+          <td>{{ data[4] }}</td>
+          <td>{{ data[5] }}</td>
+          <td>{{ data[6] }}</td>
+          <td>{{ data[7] }}</td>
+          <td>
+              
+            <button type="button" class="btn btn-sm btn-outline-warning mr-2 mb-2" (click)="onEdite(data[0])"><i aria-hidden="true" class="fe fe-edit mr-1"></i>Edite</button>
+            <button type="button" class="btn btn-sm btn-outline-danger mr-2 mb-2" (click)="onDelete(data[0])"><i aria-hidden="true" class="icmn-bin"></i>Supprimer </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </nz-table>
+
+</div>
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

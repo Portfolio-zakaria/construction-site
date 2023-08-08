@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="card" *ngIf="this.fournisseur">
+    
+        <img class="card-img-top" data-src="{{ this.fourniService.host+'/photoFourni/'+this.id}}" alt="Card image cap" style="width: 200px;">
+        <div class="card-body">
+            <h4 class="card-title text-center">{{ this.fournisseur.nom }}  {{ this.fournisseur.prenom }}</h4>
+            <p class="card-text"><strong>Date de Naissance :</strong>  {{ this.fournisseur.dateNaissance }}  </p>
+            <p class="card-text"><strong>Email : </strong>{{ this.fournisseur.email }}  </p>
+            <p class="card-text"><strong>Telephone :</strong> {{ this.fournisseur.tel }}  </p>
+            <p class="card-text"><strong>CNI :</strong> {{ this.fournisseur.cni}}  </p>
+        </div>
+        <h2  class="text-center">les materiels qui fourni</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let m of materiel._embedded.materiels"><strong>Ref : </strong>{{ m.ref }} , <strong>Name : </strong> {{ m.name }} </li>
+     
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-body">
+    <div class="alert alert-dark alert-dismissible" role="alert">
+      <div style="text-align: center;font-size: 16px;">Modifier  Fournisseur</div>
+      </div>
+      
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+      
+      <form [formGroup]="fournisseurForm" (ngSubmit)="onUpdateFournisseur()">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom"
+                 class="form-control" formControlName="nom" [ngClass]="{ 'is-invalid': fournisseurForm.get('nom').invalid && fournisseurForm.get('nom').touched}" [(ngModel)]="this.fournisseur.nom">
+                 <div class="invalid-feedback alert alert-danger">
+                     Name is required.
+                   </div>
+        </div>
+        <div class="form-group">
+            <label for="prenom">prenom</label>
+            <input type="text" id="prenom"
+                   class="form-control" formControlName="prenom" [ngClass]="{ 'is-invalid': fournisseurForm.get('prenom').invalid && fournisseurForm.get('prenom').touched}" [(ngModel)]="this.fournisseur.prenom">
+                   <div class="invalid-feedback alert alert-danger">
+                       Prenom is required.
+                     </div>
+          </div>
+        
+          <div class="form-group">
+            <label for="adress">Adress</label>
+            <input type="text" id="adress"
+                   class="form-control" formControlName="adress" [ngClass]="{ 'is-invalid': fournisseurForm.get('adress').invalid && fournisseurForm.get('adress').touched}" [(ngModel)]="this.fournisseur.adress">
+                   <div class="invalid-feedback alert alert-danger">
+                    Adress is required.
+                     </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="Email" id="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': fournisseurForm.get('email').invalid && fournisseurForm.get('email').touched}" [(ngModel)]="this.fournisseur.email">
+             <div class="invalid-feedback alert alert-danger" *ngIf="fournisseurForm.get('email').errors?.required">
+                      Email is required
+             </div>
+             <div class="invalid-feedback alert alert-danger" *ngIf="fournisseurForm.get('email').errors?.email" >
+                      Email must be a valide email
+             </div>
+          </div>
+          <div class="form-group">
+            <label for="tel">Telephone</label>
+            <input type="Telephone" id="tel"
+                   class="form-control" formControlName="tel" [ngClass]="{ 'is-invalid': fournisseurForm.get('tel').invalid && fournisseurForm.get('tel').touched}" [(ngModel)]="this.fournisseur.tel">
+                   <div class="invalid-feedback alert alert-danger" *ngIf="fournisseurForm.get('tel').errors?.required">
+                       Telephone is required
+                    </div>
+                    <div class="invalid-feedback alert alert-danger" *ngIf="fournisseurForm.get('tel').errors?.minlength">
+                       Telephone must be atlesast 10 charachter
+                    </div>
+          </div>
+        
+      <button class="btn btn-success" [disabled]="fournisseurForm.invalid "
+            type="submit">Enregistrer
+      </button>
+      <button class="btn btn-warning pull-right" (click)="onBack()">Retour</button>
+      </form>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div></div>

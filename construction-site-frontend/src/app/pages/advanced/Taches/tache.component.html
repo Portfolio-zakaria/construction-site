@@ -1,0 +1,179 @@
+<div class="kit__utils__heading">
+</div>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-6">
+          <div class="margin-bottom-0">
+              <h5 class="mb-4">
+                <strong>Chantiers</strong>
+              </h5>
+        <!-- Chantiers -->
+       <u>Veuillez choisir un chantier : </u> 
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <div *ngIf="listChantiers">
+                  <ul class="list-unstyled" *ngFor="let ch of listChantiers._embedded.chantiers" >
+                    <li class="item" value="{{ch.id_Chantier}}">
+                      <a href="javascript:;" class="itemLink" (click)="AfficherTaches(ch.id_Chantier)">
+                        <div class="itemPic bg-success">
+                          <i class="lnr lnr-apartment"></i>
+                        </div>
+                        <div class="mr-2">
+                          <div>{{ch.id_Chantier}} : {{ch.intitule}} </div>
+                          <div class="text-muted">{{ch.statut}}</div>
+                        </div>
+                        <div class="itemAction">
+                          <span></span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+      
+        </div>
+      </div>
+
+
+
+
+      <div class="col-lg-6">
+        <div class="margin-bottom-0">
+          <h5 class="mb-4">
+            <strong>Taches</strong>
+          </h5>
+            <nz-table #smallTableTache *ngIf="listTaches" nzSize="small" [nzData]="listTaches._embedded.taches">
+              <thead>
+              <tr class="sortable ">
+                <th class="table-id" st-sort="id" st-sort-default="true">Identifiant</th>
+                <th st-sort="lastName">Intitulé</th>
+                <th st-sort="username">VH</th>
+                <th st-sort="age">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let t of smallTableTache.data">
+                <td class="table-id">{{t.id_tache}}</td>
+                <td>{{t.intitule}}</td>
+                <td>{{t.vh}}</td> 
+                <td>
+          
+                  <button type="button" (click)="onDelete(t.id_tache)" class="btn btn-link mr-2 mb-2"><i class="icmn-bin"></i> </button>
+                  <button type="button" (click)="onUpdate(t.id_tache)" class="btn btn-link mr-2 mb-2"><i class="fe fe-edit"></i> </button>
+                  <button type="button" (click)="getEmpTache(t.id_tache)" class="btn btn-link mr-2 mb-2"><i class="fa fa-external-link-square"></i>Employés </button>
+                  
+                  <button class="btn btn-link mr-2 mb-2" (click)="getPlan(t.id_tache)" 
+                   ><i class="fa fa-calendar"></i>Planification</button>
+                   
+                    
+       
+                </td>
+              </tr>
+              </tbody>
+              <tfoot>
+
+              </tfoot>
+            </nz-table>
+            
+            
+            <div *ngIf="listTaches" class="my-2 rounded"><div role="alert" class="toast fade show" style="max-width: 600px; margin-left:0px">
+              <div class="toast-header">
+              <strong class="mr-auto"><h6 class="mb-4" style="color :#1c2b36">
+                Ajouter une nouvelle tache : 
+              </h6></strong></div>
+               <div class="toast-body">
+                <form [formGroup]="TacheForm" (ngSubmit)="onSaveTache(); TacheForm.reset();"  >
+              
+                  <tr>
+                      <td>
+                          <input  placeholder="Saisir Intitulé..." class="input-sm form-control search-input" type="search" st-search="firstName"
+                              id="intitule" formControlName="intitule"
+                              [ngClass]="{ 'is-invalid': TacheForm.get('intitule').invalid && TacheForm.get('intitule').touched}" />
+                      </td>
+                      <td><input  placeholder="Saisir VH ..." class="input-sm form-control search-input" type="search" st-search="firstName"
+                      id="vh" formControlName="vh"
+                      [ngClass]="{ 'is-invalid': TacheForm.get('vh').invalid && TacheForm.get('vh').touched}" />    
+                      </td>
+                      <td><button style="vertical-align: bottom;vertical-align: bottom;" type="submit" class="btn btn-info mr-2 mb-2"> Ajouter</button> </td>
+                  </tr>
+                </form>
+      
+               </div>
+              </div>
+            </div>
+      
+
+
+
+
+           
+  
+       </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="listeEmps">
+  <div class="card-body">
+     <div style= "color: #1c2b36  ;"> <h5>Liste des employés | Tache N° : {{IdTache}} </h5> </div>
+    <nz-table #smallTable nzSize="small" [nzData]="listeEmps._embedded.employes">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Nom</th>
+          <th>prénom</th>
+          <th>Email</th>
+          <th>Date d'engagment</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+          <th>Profile</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of smallTable.data">
+          <td>{{ data.id }}</td>
+          <td>{{ data.nom }}</td>
+          <td>{{ data.prenom }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.dateengagement }}</td>
+          <td>{{ data.tel }}</td>
+          <td>{{ data.adress }}</td>
+          <td>{{ data.profil }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<div class="card" *ngIf="Plan">
+  <div class="card-body">
+     <div style= "color: #1c2b36  ;"> <h5>Planification | Tache N° : {{IdTache}} </h5> </div>
+    <nz-table #smallTable nzSize="small" [nzData]="Plan">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date de début </th>
+          <th>Date de Fin </th>
+          <th style="color: #1c2b36;">Etat</th>
+          
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of smallTable.data">
+          <td>{{ data.id_planing }}</td>
+          <td>{{ data.date_start }}</td>
+          <td>{{ data.date_fin }}</td>
+          <td style="color: red  ;" >{{ etat }}</td>
+         
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

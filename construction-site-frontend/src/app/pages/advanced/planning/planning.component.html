@@ -1,0 +1,123 @@
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">
+        <strong>Ajouter une phase</strong>
+      </h5>
+      <form [formGroup]="PlanForm" (ngSubmit)="addtache()">
+        <div class="form-row">
+          <div class="form-group col-md-6"  *ngIf="listChantiers">
+            <label for="chantier">Sélectionnez un chantier </label>
+            <select class="form-control" (change)="AfficherTaches($event.target.value); " id="id_Chantier">
+                <option>Choisir un chantier</option>
+                <option *ngFor="let c of listChantiers._embedded.chantiers"  value="{{c.id_Chantier}}" label="{{c.id_Chantier}} : {{c.intitule}}" ></option>
+            </select>
+          </div>
+          <div class="form-group col-md-6" *ngIf="listTaches" >
+            <label for="tache">Sélectionnez la tache à planifiée</label>
+            <select class="form-control" id="id_tache" (change)="getTacheId($event.target.value)" formControlName="id_tache" 
+            [ngClass]="{ 'is-invalid': PlanForm.get('id_tache').invalid && PlanForm.get('id_tache').touched}">
+                <option  *ngFor="let t of listTaches._embedded.taches"  value="{{t.id_tache}}" label=" Id : {{t.id_tache}} | intitulé : {{t.intitule}} | VH : {{t.vh}}  " ></option>
+            </select>
+
+        
+
+          </div>
+        </div>
+        <div class="row">
+        <div class="form-group mb-2">
+          <div class="input-group" style="margin-left: 5px;">
+            <button style="margin-left: 490px;" #editButton ejs-button id="editButton1" (click)="getPlanningCh()"
+            class="btn btn-outline-primary  mb-2" > Afficher Planning </button>    
+          </div>
+        </div>
+
+        <div class="form-group mb-2 ml-0"  *ngIf="this.listTaches"> 
+          <div class="input-group"><button style="margin-left: 130%;" nz-button [nzType]="'primary'" (click)="showModal()" ><span>Affecter personnel à cette tâche</span></button></div> 
+          <nz-modal [(nzVisible)]="isVisible" nzTitle="Affectation personnel" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+            <label for=""> 
+             <div style="font-size: 18px; color : #1c2b36;">
+              <i class="fa fa-users"></i> Cochez les membres du personnel à affecter : 
+            </div>
+          </label>
+          <br><br>
+
+          <div class="operate">
+            <span *ngIf="numberOfChecked">{{ numberOfChecked }} employé(s) selectionné(s)</span>
+          </div>
+          <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger  [nzData]="listeEmp._embedded.employes"
+             class="kit__utils__table mb-4">
+            <thead>
+              <tr>
+                <th nzShowCheckbox ></th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th style="color: red;">profil</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of rowSelectionTable.data"> 
+                <td nzShowCheckbox  (nzCheckedChange)="ajouterIdid(data.id)" ></td>
+                <td>{{ data.nom }}</td>
+                <td>{{ data.prenom }}</td>
+                <td style="color: green;">{{ data.profil }}</td>
+              </tr>
+            </tbody>
+         
+          </nz-table>
+
+          </nz-modal>
+        </div>
+      </div>
+
+
+
+
+        <div class="my-2 rounded"><div role="alert" class="toast fade show" style="max-width: 1510px; margin-left:0px">
+          <div class="toast-header">
+          <strong class="mr-auto">Choisissez un plage de date pour cette tâche  :</strong></div>
+           <div class="toast-body">
+       
+               
+        <div class="form-row">
+         <div style="margin-top: 5px; margin-right: 10px; margin-left: 5px;" >Date de début :  </div> 
+          <div class="form-group mb-2">
+                
+              <label for="date_start" class="sr-only">Date de début</label>
+              <div class="input-group" style="margin-left: 5px;">
+                  <nz-date-picker id="date_start" formControlName="date_start" 
+                  [ngClass]="{ 'is-invalid': PlanForm.get('date_start').invalid && PlanForm.get('date_start').touched}"></nz-date-picker>
+              </div>
+            </div>
+            <div style="margin-left: 30px; margin-right: 10px; margin-top: 5px;">Date estimée de fin : </div> 
+            <div class="form-group mx-sm-3 mb-2">
+              
+              <label for="inputPassword2" class="sr-only">Date estimée de fin : </label>
+              <nz-date-picker id="date_fin" formControlName="date_fin" 
+              [ngClass]="{ 'is-invalid': PlanForm.get('date_fin').invalid && PlanForm.get('date_fin').touched}"></nz-date-picker>
+            </div>
+
+           
+            <div class="form-group mx-sm-3 mb-2">
+              <button #editButton ejs-button id="editButton" style="margin-left: 50px;
+              width: 125px;" type="button" content="Edit" 
+              class="btn btn-success mb-2" type="submit"> Planifier tache </button>
+            </div>
+
+            
+      </div>
+  
+           </div>
+          </div>
+        </div>
+  
+      </form>
+    </div>
+  </div>
+
+  
+<div>
+
+<ejs-schedule #scheduleObj width='100%' height='520px' [selectedDate]="selectedDate" [views]="scheduleViews"></ejs-schedule>
+
+  
+</div>

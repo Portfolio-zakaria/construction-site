@@ -1,0 +1,130 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">
+        <strong>Facture d'Achat</strong>
+      </h5>  
+        <table class="table table-striped  " *ngIf="commandeService.getArticleCommande()" style="border:2px grey;">
+            <thead class="thead-inverse">
+                <tr>
+                <th>Réf</th>
+                <th>Intitulé</th>
+                <th>prix</th>
+                <th>Quantité</th>
+                </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr *ngFor="let a of commandeService.getArticleCommande().values()">
+                        <td >{{ a.ref }}</td>
+                        <td>{{ a.nom }}</td>
+                        <td>{{ a.prix_unitair }}</td>
+                        <td>{{ a.qte }}</td>
+                    </tr>
+                </tbody>              
+        </table> 
+
+        <div style="float: inline-end;">
+            <fieldset style="color: red;">
+           
+                <tr>
+                    <div class="form-group row">
+                    <td><label >Total net H.T</label></td> 
+                    <div class="col-md-6">
+                    <td><input class="form-control" style="width: 150px;" disabled value="{{this.total}}"/></td> 
+                </div>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group row">
+                    <td><label >TVA</label></td> 
+                    <div class="col-md-6">
+                    <td><input class="form-control" style="width: 150px; margin-left: 55px; " disabled value="20%"/></td> 
+                </div>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group row">
+                    <td><label >Total T.T.C</label></td> 
+                    <div class="col-md-6">
+                    <td><input class="form-control" style="width: 150px; margin-left: 18px;"  disabled value="{{this.totaltva}}" /></td> 
+                   </div>
+                </div>
+
+                </tr>
+                
+            </fieldset>
+        </div>
+</div>
+</div>    
+  
+
+
+    <form [formGroup]="CommandeForm">
+ 
+  
+        
+
+
+    <div class="row">
+        <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+        
+        
+            <div style="background-color: #286090;" class=" text-white text-uppercase px-3 py-1 mb-2">
+              <strong>Chantier</strong>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-borderless text-gray-6 mb-0">
+                <tbody>
+                  <tr>
+                      <td>
+                          <div class="form-group" *ngIf="this.chantiers">
+                              <label for="chantier">Selectionnez un chantier :</label>
+                              <select class="form-control"  id="chantier" name="chantier" formControlName="chantier">
+                                <option *ngFor="let c of this.chantiers._embedded.chantiers" value="{{c.id_Chantier}}">{{ c.intitule }}</option>
+                              </select>
+                          </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        
+        </div>
+
+        </div></div>
+
+        <div class="col-md-6">
+
+        <div class="card">
+            <div class="card-body">
+                  <div style="background-color: #286090;" class=" text-white text-uppercase px-3 py-1 mb-2">
+                    <strong>Fournisseur</strong>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-borderless text-gray-6 mb-0">
+                      <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group" *ngIf="this.fournisseurs">
+                                    <label for="fournisseur">Selectionnez un fournisseur :</label>
+                                    <select class="form-control"  id="fournisseur" name="fournisseur" formControlName="fournisseur" >
+                                        <option *ngFor="let f of this.fournisseurs._embedded.fournisseurs" value="{{f.id_fournisseur}}">{{ f.nom }}</option>                
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+            
+                </div></div>
+
+        </div>   
+
+    </div>
+       <button style="float: inline-end; border-color: #286090; background-color: #286090;" class="btn btn-success mr-2 mb-2"  (click)="SaveCommadne(CommandeForm.value.chantier,CommandeForm.value.fournisseur)">Confirmer la commande </button>
+       <button style="float: right;" class="btn btn-dark mr-2 mb-2"(click)="onAnule()" >Annuler </button>
+</form>
+  

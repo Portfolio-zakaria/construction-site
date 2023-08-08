@@ -1,0 +1,152 @@
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">
+        <strong>Nouveau sous-traitant </strong>
+      </h5>
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="soustraitantForm" (ngSubmit)="onSavesoustraitant(); soustraitantForm.reset();" >
+        <div class="row">
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="nom">Nom</nz-form-label>
+              <nz-form-control>
+                <input type="text" id="nom" class="form-control" formControlName="nom" [ngClass]="{ 'is-invalid': soustraitantForm.get('nom').invalid && soustraitantForm.get('nom').touched}">
+                <div class="invalid-feedback alert alert-danger">
+                    Name is required.
+                  </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="prenom">Prénom</nz-form-label>
+              <nz-form-control>
+                <input type="text" id="prenom" class="form-control" formControlName="prenom" [ngClass]="{ 'is-invalid': soustraitantForm.get('prenom').invalid && soustraitantForm.get('prenom').touched}">
+                <div class="invalid-feedback alert alert-danger">
+                    Prenom is required.
+                  </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+    
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="Statut">Statut</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Statut" id="statut" formControlName="statut"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('statut').invalid && soustraitantForm.get('statut').touched}" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+         
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="city3">Spécialité</nz-form-label>
+              <nz-form-control>
+                <input type="text" id="specialite"
+                class="form-control" formControlName="specialite"[ngClass]="{ 'is-invalid': soustraitantForm.get('specialite').invalid && soustraitantForm.get('specialite').touched}">
+                <div class="invalid-feedback alert alert-danger">
+                 spicialite is required.
+                  </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="address31">Adresse</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="1234 Main St." id="adress" formControlName="adress"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('adress').invalid && soustraitantForm.get('adress').touched}" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+  
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="email3">Email</nz-form-label>
+              <nz-form-control>
+                <input type="Email" id="title" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': soustraitantForm.get('email').invalid && soustraitantForm.get('email').touched}">
+                <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('email').errors?.required">
+                         Email is required
+                </div>
+                <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('email').errors?.email" >
+                         Email must be a valide email
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="tel">Téléphone</nz-form-label>
+              <nz-form-control>
+                <input type="Telephone" id="tel"
+                class="form-control" formControlName="tel" [ngClass]="{ 'is-invalid': soustraitantForm.get('tel').invalid && soustraitantForm.get('tel').touched}">
+                <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('tel').errors?.required">
+                    Telephone is required
+                 </div>
+                 <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('tel').errors?.minlength">
+                    Telephone must be atlesast 10 charachter
+                 </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <br>
+       
+            <nz-form-item>
+              <button type="button" style="float: inline-end;" class="btn btn-success " type="submit">
+                Enregistrer
+              </button>
+            </nz-form-item>
+     
+        </div>
+      </form>
+    </div>
+
+    <div class="" >
+      <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+        <strong>Liste de sous-traitants</strong>
+      </div>
+       
+    <div class="card">
+      <div class="card-body" >
+    <nz-table #smallTable nzSize="small" *ngIf="SousTraitants" [nzData]="SousTraitants._embedded.sous_Traitants">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Spécialité</th>
+          <th>Statut</th>
+          <th>Email</th>
+          <th>adresse</th>
+          <th>Téléphone</th>
+          <th>Actions</th>
+          
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of smallTable.data">
+          <td>{{element.id}}</td>
+          <td>{{element.nom}} </td>
+          <td>{{element.prenom}}</td>
+          <td>{{element.specialite}}</td>
+          <td>{{element.statut}}</td>
+          <td>{{element.email}}</td>
+          <td>{{element.adress}}</td>
+          <td>{{element.tel}}</td>
+          <td>
+            <div aria-label="" role="group" class="btn-group mr-2 mb-2">
+              <button type="button" class="btn btn-outline-warning" (click)="onEdite(element.id)"><i aria-hidden="true" class="fe fe-edit mr-1"></i>Edite</button>
+              <button type="button" class="btn btn-outline-danger" (click)="onDelete(element.id)"><i aria-hidden="true" class="icmn-bin"></i>Supprimer </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    </div>
+    </div>
+    
+    
+    

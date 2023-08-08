@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-dark alert-dismissible" role="alert">
+            <div style="text-align: center;font-size: 16px;">Envoyer Email</div>
+            </div>
+
+        <div class="bg-light rounded-lg p-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="select">Select Fournisseur / Client:</label>
+                    <select class="form-control"  id="select" name="select" #selectElem1  (change)="showStaff(selectElem1.value)">
+                        <option>Select -----------------</option>
+                        <option value="Client">Client</option>
+                        <option value="Fournisseur">Fournisseur</option>
+                                
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" *ngIf="fournisseurs && showFournisseurs">
+                <label for="Fournisseur">Select Fournisseur:</label>
+                <select class="form-control"  id="Fournisseur" name="Fournisseur" #selectElem2  (change)="showFormEmail(selectElem2.value)">
+                    <option>Select -----------------</option>
+                    <option *ngFor="let f of fournisseurs._embedded.fournisseurs" value="{{f.email}}">{{ f.nom }} {{ f.prenom }}</option>
+                                    
+                </select>
+                </div>
+                <div class="col-md-6" *ngIf="listClients && showClient">  
+                    <label for="client">Select Client:</label>
+                    <select class="form-control"  id="client" name="client" #selectElem3  (change)="showFormEmail(selectElem3.value)">
+                        <option>Select -----------------</option>
+                        <option *ngFor="let c of listClients._embedded.clients" value="{{c.email}}">{{ c.nom }} {{ c.prenom }}</option>
+                                        
+                    </select>
+                </div>
+            </div>
+        
+          <div class="container mt-5">
+            <form  [formGroup]="BoiteEmailForm" (ngSubmit)="sendEmail()">
+        
+                <div class="form-group" >
+                    <label for="to">To</label>
+                    <input type="email" id="to" style="width: 600px;" class="form-control" formControlName="to" [ngClass]="{ 'is-invalid': BoiteEmailForm.get('to').invalid && BoiteEmailForm.get('to').touched}" [(ngModel)]="data">
+                    <div class="invalid-feedback alert alert-danger">
+                      Email is required.
+                      </div>
+                  </div>
+                 
+                  <div class="form-group">
+                    <label for="messageSubject">Subject</label>
+                    <input type="text" id="messageSubject" style="width: 600px;" class="form-control" formControlName="messageSubject" [ngClass]="{ 'is-invalid': BoiteEmailForm.get('messageSubject').invalid && BoiteEmailForm.get('messageSubject').touched}">
+                    <div class="invalid-feedback alert alert-danger">
+                      Subject is required.
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="messageText">Message Text</label>
+                  
+                     <angular-editor [placeholder]="'Enter text here...'" formControlName="messageText"></angular-editor>
+                  
+                   
+                    </div>
+                    <button type="submit" class="btn btn-outline-success" > Envoye</button>
+            </form>
+           
+          </div>
+        </div>
+
+</div>
+</div>

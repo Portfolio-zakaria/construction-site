@@ -1,0 +1,113 @@
+  <div class="card">
+    <div class="card-body">
+      <div class="alert alert-dark alert-dismissible" role="alert">
+        <div style="text-align: center;font-size: 16px;">Modifier sous-traitant</div>
+        </div>
+        
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="soustraitantForm" (ngSubmit)="onUpdateSousTraitant(); soustraitantForm.reset();" >
+        <div class="row">
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="nom">Nom</nz-form-label>
+              <nz-form-control>
+                <input type="text" id="nom" class="form-control" formControlName="nom" [(ngModel)]="this.sousTraitant.nom"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('nom').invalid && soustraitantForm.get('nom').touched}">
+                <div class="invalid-feedback alert alert-danger">
+                    Name is required.
+                  </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="prenom">Prénom</nz-form-label>
+              <nz-form-control>
+                <input type="text" id="prenom" class="form-control" formControlName="prenom"  [(ngModel)]="this.sousTraitant.prenom"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('prenom').invalid && soustraitantForm.get('prenom').touched}">
+                <div class="invalid-feedback alert alert-danger">
+                    Prenom is required.
+                  </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+    
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="Statut">Statut</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Statut" id="statut" formControlName="statut" [(ngModel)]="this.sousTraitant.statut"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('statut').invalid && soustraitantForm.get('statut').touched}" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+         
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="city3">Spécialité</nz-form-label>
+              <nz-form-control>
+                <input type="text" id="specialite"
+                class="form-control" formControlName="specialite"   [(ngModel)]="this.sousTraitant.specialite"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('specialite').invalid && soustraitantForm.get('specialite').touched}">
+                <div class="invalid-feedback alert alert-danger">
+                 spicialite is required.
+                  </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="address31">Adresse</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="1234 Main St." id="adress" formControlName="adress" [(ngModel)]="this.sousTraitant.adress"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('adress').invalid && soustraitantForm.get('adress').touched}" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+  
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="email3">Email</nz-form-label>
+              <nz-form-control>
+                <input type="Email" id="title" class="form-control" formControlName="email"  [(ngModel)]="this.sousTraitant.email"
+                 [ngClass]="{ 'is-invalid': soustraitantForm.get('email').invalid && soustraitantForm.get('email').touched}">
+                <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('email').errors?.required">
+                         Email is required
+                </div>
+                <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('email').errors?.email" >
+                         Email must be a valide email
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label nzFor="tel">Téléphone</nz-form-label>
+              <nz-form-control>
+                <input type="Telephone" id="tel"
+                class="form-control" formControlName="tel"  [(ngModel)]="this.sousTraitant.tel"
+                [ngClass]="{ 'is-invalid': soustraitantForm.get('tel').invalid && soustraitantForm.get('tel').touched}">
+                <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('tel').errors?.required">
+                    Telephone is required
+                 </div>
+                 <div class="invalid-feedback alert alert-danger" *ngIf="soustraitantForm.get('tel').errors?.minlength">
+                    Telephone must be atlesast 10 charachter
+                 </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <br>
+          <div class="col-12">
+
+            <nz-form-item>
+              <button type="button" class="btn btn-success mr-2 mb-2" type="submit">
+                Modifier
+              </button>
+             
+            </nz-form-item>
+            <button class="btn btn-warning mr-2 mb-2 pull-right" (click)="onBack()">Retour</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>

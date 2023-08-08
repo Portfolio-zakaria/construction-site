@@ -1,0 +1,76 @@
+  <div style="background-color: #286090 ; text-align: center;" class="text-white text-uppercase px-3 py-1 mb-2">
+    <strong>Liste des commandes</strong>
+  </div>
+<div class="card">
+ <div class="card-body">
+      <button class="btn btn-success mr-2 mb-2" style="background-color:#286090 ; border-color:#286090 ; margin-bottom: 5px;" (click)="onNewCommandes()" >Ajouter une cmmande</button>
+      <nz-table #smallTable nzSize="small" *ngIf="this.Commandes" [nzData]="this.Commandes._embedded.commandes">
+        <thead>
+          <tr>
+            <th>Numéro Commande</th>
+            <th>Date</th>
+            <th>Total de payment</th>
+            <th>L'état</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of smallTable.data">
+            <td>{{ data.code }}</td>
+            <td>{{ data.date_commande }}</td>
+            <td>{{ data.total_payment }}</td>
+            <td>{{ data.etat }}</td>
+            <td>
+              <div aria-label="" role="group" class="btn-group mr-2 mb-2">
+                <button type="button" class="btn btn-outline-warning" (click)="onEditeEtat(data.id_commande)"><i aria-hidden="true" class="fe fe-edit mr-1"></i> Edite </button>
+                <button type="button" class="btn btn-outline-danger" (click)="onDelete(data.id_commande)"><i aria-hidden="true" class="icmn-bin"></i> Supprimer </button>
+                <button type="button" class="btn btn-outline-info" (click)="onShowCommandes(data.id_commande)"> <i aria-hidden="true" class="fe fe-external-link"></i> Plus </button>
+              </div>            
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
+</div>
+
+
+
+        <div class="row" *ngIf="this.show" style="margin-left: 1px;">
+          <div class="card">
+            <div class="card-body">
+  
+            <h5 style="color: #1c2b36; text-align: center;">Modifier l'état de la commande </h5>
+            <form [formGroup]="commandeForm" (ngSubmit)="editeEtatCommande()">
+              <div class="form-group">
+                <label for="etate"> Choisir la nouvelle état de la commande : </label>
+               
+                <select  nzplaceholder="Choisir " id="etate" class="form-control" formControlName="etate" 
+                   [ngClass]="{ 'is-invalid': commandeForm.get('etate').invalid && commandeForm.get('etate').touched}" >
+                  <option value="Livrée"> Livrée </option>
+                  <option value="En Attente"> En Attente </option>
+                  <option value="Annulée" > Annulée </option>
+                </select>
+
+              </div>
+              <button class="btn btn-success" [disabled]="commandeForm.invalid "
+                    type="submit">Modifier
+              </button>
+            <button style="margin-left: 5px;" class="btn btn-warning" (click)="onBack()">Retour</button>
+        </form>    
+  
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

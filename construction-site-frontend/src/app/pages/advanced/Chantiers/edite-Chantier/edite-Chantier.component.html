@@ -1,0 +1,67 @@
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">
+        <strong>Modification Chantier</strong>
+      </h5>
+      <form nz-form [formGroup]="ChantierForm" (ngSubmit)="onUpdateChantier()"  >
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="intitule" class="text-left">Intitulé du chantier</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please input your full name!">
+            <input nz-input  placeholder="Intitulé du chantier..." id="intitule" formControlName="intitule" [(ngModel)]="this.chantier.intitule"
+             [ngClass]="{ 'is-invalid': ChantierForm.get('intitule').invalid && ChantierForm.get('intitule').touched}" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+      
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="statut" class="text-left">statut</nz-form-label>
+      
+              <nz-select style="width: 120px;" nzPlaceHolder="Choisir"  id="statut" formControlName="statut" [(ngModel)]="this.chantier.statut"
+              [ngClass]="{ 'is-invalid': ChantierForm.get('statut').invalid && ChantierForm.get('statut').touched}" >
+                <nz-option nzValue="A l'étude" nzLabel="A l'étude"></nz-option>
+                <nz-option nzValue="En cours" nzLabel="En cours"></nz-option>
+                <nz-option nzValue="Achevé" nzLabel="Achevé"></nz-option>
+                <nz-option nzValue="Litige/Contentieux" nzLabel="Litige/Contentieux"></nz-option>
+              </nz-select>
+         
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-item>
+              <nz-form-label nzFor="adresse" [nzSm]="4" [nzXs]="24" class="text-left">Adresse</nz-form-label>
+                  <nz-form-control>
+                    <input  style="margin-left: 135px;" nz-input placeholder="1234 Main St." id="adresse" formControlName="adresse"  [(ngModel)]="this.chantier.adresse"
+                    [ngClass]="{ 'is-invalid': ChantierForm.get('adresse').invalid && ChantierForm.get('adresse').touched}"/>
+                  </nz-form-control>
+          </nz-form-item>
+                <nz-form-item>
+                  <nz-form-label style="margin-left: 150px;" nzFor="ville" [nzSm]="4" [nzXs]="24" class="text-left">Ville</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="Ville" id="ville" formControlName="ville" [(ngModel)]="this.chantier.ville"
+                    [ngClass]="{ 'is-invalid': ChantierForm.get('ville').invalid && ChantierForm.get('ville').touched}"/>
+                    <div class="invalid-feedback">
+                      ville is required.
+                    </div>
+                  </nz-form-control>
+                </nz-form-item>
+
+              
+          
+           
+        
+        </nz-form-item>
+      
+          
+       <nz-form-item>
+        <nz-form-control>
+          <button type="button" class="btn btn-outline-danger mr-2 mb-2" type="submit">
+            Modifier
+          </button>
+        </nz-form-control>
+       </nz-form-item>
+     </form>
+    </div>
+  </div>
+
+ 
+  </div>
+

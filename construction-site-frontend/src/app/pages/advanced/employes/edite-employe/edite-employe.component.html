@@ -1,0 +1,97 @@
+<div class="card">
+  <div class="card-body">
+    <div class="alert alert-dark alert-dismissible" role="alert">
+      <div style="text-align: center;font-size: 16px;">Modifier Employer</div>
+      </div>
+      
+     
+        <div class="row">
+          <div class="col-md-2"></div>
+        <div class="col-md-8">
+      <form [formGroup]="employeForm" (ngSubmit)="onUpdateEmploye()">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom"
+                 class="form-control" formControlName="nom" [ngClass]="{ 'is-invalid': employeForm.get('nom').invalid && employeForm.get('nom').touched}" [(ngModel)]="this.employe.nom">
+                 <div class="invalid-feedback alert alert-danger">
+                     Name is required.
+                   </div>
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom"
+                   class="form-control" formControlName="prenom"[ngClass]="{ 'is-invalid': employeForm.get('prenom').invalid && employeForm.get('prenom').touched}" [(ngModel)]="this.employe.prenom">
+                   <div class="invalid-feedback alert alert-danger">
+                       Prenom is required.
+                     </div>
+          </div>
+         
+       
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="Email" id="title" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': employeForm.get('email').invalid && employeForm.get('email').touched}" [(ngModel)]="this.employe.email">
+             <div class="invalid-feedback alert alert-danger" *ngIf="employeForm.get('email').errors?.required">
+                      Email is required
+             </div>
+             <div class="invalid-feedback alert alert-danger" *ngIf="employeForm.get('email').errors?.email" >
+                      Email must be a valide email
+             </div>
+          </div>
+          <div class="form-group">
+            <label for="tel">Télephone</label>
+            <input type="Telephone" id="tel"
+                   class="form-control" formControlName="tel" [ngClass]="{ 'is-invalid': employeForm.get('tel').invalid && employeForm.get('tel').touched}" [(ngModel)]="this.employe.tel">
+                   <div class="invalid-feedback alert alert-danger" *ngIf="employeForm.get('tel').errors?.required">
+                       Telephone is required
+                    </div>
+                    <div class="invalid-feedback alert alert-danger" *ngIf="employeForm.get('tel').errors?.minlength">
+                       Telephone must be atlesast 10 charachter
+                    </div>
+          </div>
+          <div class="form-group">
+            <label for="dateengagement">Adresse</label>
+            <input type="text" id="dateengagement"
+                   class="form-control" formControlName="adress" [ngClass]="{ 'is-invalid': employeForm.get('adress').invalid && employeForm.get('adress').touched}" [(ngModel)]="this.employe.adress">
+                   <div class="invalid-feedback alert alert-danger">
+                      Adresse is required.
+                     </div>
+          </div>
+
+        <div class="form-group">
+          <label for="dateengagement">Date d'engagment</label>
+          <input type="date" id="dateengagement"
+                 class="form-control" formControlName="dateengagement"[ngClass]="{ 'is-invalid': employeForm.get('dateengagement').invalid && employeForm.get('dateengagement').touched}" [(ngModel)]="this.employe.dateengagement">
+                 <div class="invalid-feedback alert alert-danger">
+                    Date engagement is required.
+                   </div>
+        </div>
+
+        <div class="form-group">
+            <label for="profil">Profil</label>
+            <input type="text" id="profil"
+                   class="form-control" formControlName="profil"[ngClass]="{ 'is-invalid': employeForm.get('profil').invalid && employeForm.get('profil').touched}" [(ngModel)]="this.employe.profil">
+                   <div class="invalid-feedback alert alert-danger">
+                    profil is required.
+                     </div>
+          </div>
+          <div class="form-group">
+            <label for="salaire">Salaire</label>
+            <input type="number" id="salaire"
+                   class="form-control" formControlName="salaire"[ngClass]="{ 'is-invalid': employeForm.get('salaire').invalid && employeForm.get('salaire').touched}" [(ngModel)]="this.employe.salaire">
+                   <div class="invalid-feedback alert alert-danger">
+                       Salaire is required.
+                     </div>
+          </div>
+      
+      <button class="btn btn-outline-success" [disabled]="employeForm.invalid "
+            type="submit">Enregistrer
+      </button>
+      <button class="btn btn-outline-warning pull-right" style="margin-left: 5px;" (click)="onBack()">Retour</button>
+      </form>
+      </div>
+      <div class="col-md-2"></div>
+  
+  </div>
+  </div>
+  
+

@@ -1,0 +1,97 @@
+<!--<div>
+  <div class="text-center mb-5">
+    <h1 class="mb-5 px-3">
+      <strong>Bienvenue dans {{logo}}</strong>
+    </h1>
+  
+  </div>
+  <div class="card boxContainer">
+    <div class="text-dark font-size-24 mb-3">
+      <strong>Connectez-vous à votre compte</strong>
+    </div>
+
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="submitForm()" role="form">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your email!">
+          <input type="text" nz-input formControlName="email" nzSize="large" placeholder="Email Address" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <input type="password" nz-input nzSize="large" formControlName="password" placeholder="Password" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [nzSize]="'large'" class="text-center w-100">
+            <strong>S'identifier</strong>
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  
+  </div>
+
+</div>
+
+<div class="container">
+    
+
+  <div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Connexion</h2>
+    <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+      <div class="form-group">
+        <label for="username">username</label>
+        <input type="text" id="username" name="username" ngModel class="form-control" >
+      </div>
+  
+      
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" ngModel class="form-control" >
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Connexion</button>
+      
+    </form>
+    <p class="text-danger"></p>
+  </div>
+</div>
+</div>
+
+-->
+
+<div class="text-center mb-5">
+  <h1 class="mb-5 px-3">
+    <strong>Bienvenue dans {{logo}}</strong>
+  </h1>
+
+</div>
+<div class="card boxContainer">
+  <div class="text-dark font-size-24 mb-3">
+    <strong>Connectez-vous à votre compte</strong>
+  </div>
+
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="onLogin()" role="form">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <input type="text" nz-input formControlName="username" nzSize="large" placeholder="UserName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <input type="password" nz-input nzSize="large" formControlName="password" placeholder="Password" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [nzSize]="'large'" class="text-center w-100">
+          <strong>S'identifier</strong>
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+
+</div>
+
